@@ -1,11 +1,22 @@
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-import { useQuery } from '@apollo/client'
+import {
+  LazyQueryExecFunction,
+  OperationVariables,
+  useLazyQuery,
+} from '@apollo/client'
+import { PokemonType, PokemonsQueryResultDataType } from 'Types/PokemonType'
 
 import { GET_POKEMONS_QUERY } from '../Queries'
+import { normalizePokemonsQueryResults } from './helpers'
 
 interface IContextProps {
-  something: string
+  pokemons: PokemonType[]
+  loading: boolean
+  fetchPokemon: LazyQueryExecFunction<
+    PokemonsQueryResultDataType,
+    OperationVariables
+  >
 }
 
 interface IPokemonProviderProps {
@@ -17,17 +28,26 @@ export const ReactContext = createContext<IContextProps>({} as IContextProps)
 export const PokemonProvider: React.FC<IPokemonProviderProps> = ({
   children,
 }) => {
-  // const QueryData = useQuery(GET_POKEMONS_QUERY)
+  const [pokemons, setPokemons] = useState<PokemonType[]>([])
 
-  // console.log(QueryData)
+  const [fetchPokemon, { data, loading }] =
+    useLazyQuery<PokemonsQueryResultDataType>(GET_POKEMONS_QUERY)
+
+  useEffect(() => {
+    if (!!data && Array.isArray(data.results)) {
+      setPokemons(normalizePokemonsQueryResults(data.results))
+    }
+  }, [data])
 
   return (
     <ReactContext.Provider
       value={useMemo(
         () => ({
-          something: '',
+          loading,
+          pokemons,
+          fetchPokemon,
         }),
-        [],
+        [loading, pokemons, fetchPokemon],
       )}
     >
       {children}
