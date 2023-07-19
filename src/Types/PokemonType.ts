@@ -3,53 +3,44 @@ export type PokemonsQueryResultsArrayType = {
   name: string
   height?: number
   weight?: number
+
   specy: {
     color: {
       name: string
     }
     gender_rate?: number
     has_gender_differences?: boolean
-    descriptions?: { text: string }[]
-  }
-  images: {
-    sprites: string
-    spritesJSON: {
-      other: {
-        'official-artwork': {
-          front_default: string
-        }
-      }
-    }
-  }[]
-  types: {
-    data: {
-      type: { name: string }
+    descriptions?: {
+      text: string
     }[]
   }
-  moves?: { move: { name: string } }[]
-  stats?: {
-    value: number
-    stat: {
-      name: string
-    }
-  }[]
+  types: {
+    data: {
+      type: {
+        name: string
+      }
+    }[]
+  }
+  images: { sprites: string }[]
+  moves: { move: { name: string } }[]
+  stats: { value: number; stat: { name: string } }[]
 }
 
 export type PokemonsQueryResultDataType = {
-  results: PokemonsQueryResultsArrayType[]
+  results: []
 }
 
 export type PokemonType = {
   id: number
-  name: string
   pokedexIndex: string
+  name: string
   height?: number
   weight?: number
   color: string
+  types: string[]
   image: string | null
-  types?: string[]
   gender?: { m: number; f: number }
   description?: string
   move?: string
-  stats?: { name: string; value: number }[]
+  stats?: { value: number; name: string }[]
 }
