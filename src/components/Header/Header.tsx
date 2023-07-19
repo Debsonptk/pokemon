@@ -9,7 +9,7 @@ const Header: React.FC = () => (
   <BgColor>
     <Container className="d-flex justify-content-between align-items-center">
       <div>
-        <h1 className="text-white">Hello, Ash Katchum</h1>
+        <h1 className="text-white">Hello, Ash Ketchum</h1>
         <p className="text-white">Welcome!</p>
       </div>
       <div>

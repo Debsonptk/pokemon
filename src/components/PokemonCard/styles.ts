@@ -5,16 +5,16 @@ type colorsType = {
 }
 
 interface ICardContainerProps {
-  bgColor: string
+  bgcolor: string
 }
 
 const colors: colorsType = {
-  blue: '#5ed5eb',
-  red: '#fa847f',
-  green: '#6dd2af',
+  blue: '#5190d6',
+  red: '#fe9f52',
+  green: '#6ab760 ',
   white: '#d7d7d7',
-  yellow: '#e7e25a',
-  purple: '#cd84f1',
+  yellow: '#f4d338',
+  purple: '#b369ce ',
   brown: '#a08679',
   pink: '#f5aee1',
   gray: '#787a7a',
@@ -28,7 +28,7 @@ const fontColors: colorsType = {
 }
 
 export const CardBg = styled.div<ICardContainerProps>`
-  background-color: ${({ bgColor }) => colors[bgColor]};
+  background-color: ${({ bgcolor }) => colors[bgcolor]};
   border-radius: 10px;
   float: left;
   transition: box-shadow 0.3s;
@@ -40,8 +40,8 @@ export const CardBg = styled.div<ICardContainerProps>`
     transform: scale(1.1);
     box-shadow: 0 0 11px black;
   }
-  color: ${({ bgColor }) =>
-    fontColors[bgColor] ? fontColors[bgColor] : fontColors.default};
+  color: ${({ bgcolor }) =>
+    fontColors[bgcolor] ? fontColors[bgcolor] : fontColors.default};
 
   @media (min-width: 992px) {
     h2 {
@@ -57,5 +57,5 @@ export const TypesBg = styled.div`
 `
 
 export const IdBg = styled.div<ICardContainerProps>`
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.3);
 `
