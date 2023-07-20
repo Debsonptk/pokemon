@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 import {
   LazyQueryExecFunction,
@@ -23,11 +30,14 @@ interface IContextProps {
     PokemonsQueryResultDataType,
     OperationVariables
   >
+  fetchNextPage: () => void
 }
 
 interface IPokemonProviderProps {
   children: React.ReactNode
 }
+
+const RESULTS_PER_PAGE = 24
 
 export const ReactContext = createContext<IContextProps>({} as IContextProps)
 
@@ -36,18 +46,27 @@ export const PokemonProvider: React.FC<IPokemonProviderProps> = ({
 }) => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([])
   const [pokemon, setPokemon] = useState<PokemonType | null>(null)
+  const [offset, setOffset] = useState(0)
 
   const [fetchPokemons, { data, loading }] =
     useLazyQuery<PokemonsQueryResultDataType>(GET_POKEMONS_QUERY, {
-      variables: { limit: 24, offset: 0 },
+      variables: { limit: RESULTS_PER_PAGE, offset },
     })
+
+  const fetchNextPage = useCallback(
+    () => setOffset((prev) => prev + RESULTS_PER_PAGE),
+    [],
+  )
 
   const [fetchPokemon, { data: pokemonData, loading: pokemonLoading }] =
     useLazyQuery<PokemonsQueryResultDataType>(GET_POKEMON_QUERY)
 
   useEffect(() => {
     if (!!data && Array.isArray(data.results)) {
-      setPokemons(normalizePokemonsQueryResults(data.results))
+      setPokemons((prev) => [
+        ...prev,
+        ...normalizePokemonsQueryResults(data.results),
+      ])
     }
   }, [data])
 
@@ -69,6 +88,7 @@ export const PokemonProvider: React.FC<IPokemonProviderProps> = ({
           pokemonLoading,
           fetchPokemons,
           fetchPokemon,
+          fetchNextPage,
         }),
         [
           loading,
@@ -77,6 +97,7 @@ export const PokemonProvider: React.FC<IPokemonProviderProps> = ({
           fetchPokemon,
           pokemonLoading,
           pokemon,
+          fetchNextPage,
         ],
       )}
     >

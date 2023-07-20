@@ -20,7 +20,7 @@ const Menu: React.FC = () => (
       <StyledLink to="/pokemons" className="text-black text-decoration-none">
         Pokemons
       </StyledLink>
-      <StyledLink to="/" className="text-black text-decoration-none">
+      <StyledLink to="/contact" className="text-black text-decoration-none">
         Contact
       </StyledLink>
       <div />

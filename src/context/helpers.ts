@@ -40,4 +40,7 @@ export const normalizePokemonsQueryResults = (
       null,
     description: item.specy?.descriptions?.[0]?.text ?? undefined,
     move: item.moves?.[0]?.move?.name ?? undefined,
+    stats:
+      item.stats?.map((s) => ({ name: s.stat.name, value: s.value })) ??
+      undefined,
   }))

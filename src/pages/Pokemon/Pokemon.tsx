@@ -1,7 +1,10 @@
 import { memo, useEffect } from 'react'
 
 import { Container } from 'react-bootstrap'
+import Lottie from 'react-lottie'
 import { Link, useParams } from 'react-router-dom'
+
+import animationData from 'assets/animation/loading_pikachu.json'
 
 import { usePokemon } from 'context/PokemonContext'
 
@@ -30,9 +33,19 @@ const Pokemon: React.FC = () => {
     <>
       <Menu />
       <Container>
-        <Link to="/"> Back </Link>
+        <Link to="/pokemons"> Back </Link>
         <h1>{name}</h1>
-        {pokemonLoading && <p>Loading...</p>}
+        {pokemonLoading && (
+          <Lottie
+            options={{
+              animationData,
+              autoplay: true,
+              loop: true,
+            }}
+            height={250}
+            width={250}
+          />
+        )}
         {!pokemonLoading && pokemon && (
           <>
             <img
