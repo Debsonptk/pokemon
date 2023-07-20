@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { usePokemon } from 'context/PokemonContext'
 
-import Footer from 'components/Footer/Footer'
+import Menu from 'components/Menu/Menu'
 
 import useTitle from 'hooks/useTitle'
 
@@ -28,19 +28,24 @@ const Pokemon: React.FC = () => {
 
   return (
     <>
+      <Menu />
       <Container>
         <Link to="/"> Back </Link>
+        <h1>{name}</h1>
         {pokemonLoading && <p>Loading...</p>}
         {!pokemonLoading && pokemon && (
-          <img
-            src={pokemon.image ? pokemon.image : ''}
-            alt={pokemon.name}
-            className="img-fluid"
-          />
+          <>
+            <img
+              src={pokemon.image ? pokemon.image : ''}
+              alt={pokemon.name}
+              className="img-fluid"
+            />
+            <p>{pokemon.description}</p>
+            <p>{pokemon.weight}</p>
+            <p>{pokemon.height}</p>
+          </>
         )}
-        <h1>{name}</h1>
       </Container>
-      <Footer />
     </>
   )
 }

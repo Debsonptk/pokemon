@@ -1,16 +1,20 @@
 import { memo, useEffect } from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
+import Lottie from 'react-lottie'
+
+import animationData from 'assets/animation/loading.json'
 
 import { usePokemon } from 'context/PokemonContext'
 
-import Footer from 'components/Footer/Footer'
-import Header from 'components/Header/Header'
+import Menu from 'components/Menu/Menu'
 import PokemonCard from 'components/PokemonCard/PokemonCard'
 
 import useTitle from 'hooks/useTitle'
 
-const Home: React.FC = () => {
+import { StyledH1 } from './styles'
+
+const Pokemons: React.FC = () => {
   const setTitle = useTitle()
   const { loading, fetchPokemons, pokemons } = usePokemon()
 
@@ -26,10 +30,22 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Menu />
       <Container>
-        <h5 className="pt-3 pb-3">Which pokemon would you choose?</h5>
-        {loading && <p>Loading...</p>}
+        <StyledH1 className="p-5 text-center">
+          More than 250 Pokemons for you to choose your favorite
+        </StyledH1>
+        {loading && (
+          <Lottie
+            options={{
+              animationData,
+              autoplay: true,
+              loop: true,
+            }}
+            height={400}
+            width={400}
+          />
+        )}
         {!loading && (
           <Row className="row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
             {pokemons.map((pokemon) => (
@@ -40,9 +56,8 @@ const Home: React.FC = () => {
           </Row>
         )}
       </Container>
-      <Footer />
     </>
   )
 }
 
-export default memo(Home)
+export default memo(Pokemons)
