@@ -4,6 +4,8 @@ import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { PokemonType } from 'Types/PokemonType'
 
+import { unslugify } from 'helpers'
+
 import { CardBg, IdBg, TypesBg } from './styles'
 
 interface IPokemonCardProps {
@@ -17,7 +19,7 @@ const PokemonCard: React.FC<IPokemonCardProps> = ({ pokemon }) => {
       className="d-flex  flex-column position-relative px-4 py-3 w-100"
     >
       <div className="d-flex">
-        <h2 className="mb-3 d-flex flex-grow-1">{pokemon.name}</h2>
+        <h2 className="mb-3 d-flex flex-grow-1">{unslugify(pokemon.name)}</h2>
         <IdBg $bgColor={pokemon.color}>
           <h2>#{String(pokemon.id).padStart(3, '0')}</h2>
         </IdBg>
@@ -35,7 +37,7 @@ const PokemonCard: React.FC<IPokemonCardProps> = ({ pokemon }) => {
                   className=" px-3 py-1 "
                   style={{ verticalAlign: 'midle' }}
                 >
-                  {_t}
+                  {unslugify(_t)}
                 </span>
               </TypesBg>
             ))}
