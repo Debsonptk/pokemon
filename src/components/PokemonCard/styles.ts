@@ -5,7 +5,7 @@ type colorsType = {
 }
 
 interface ICardContainerProps {
-  bgcolor: string
+  $bgColor: string
 }
 
 const colors: colorsType = {
@@ -28,7 +28,7 @@ const fontColors: colorsType = {
 }
 
 export const CardBg = styled.div<ICardContainerProps>`
-  background-color: ${({ bgcolor }) => colors[bgcolor]};
+  background-color: ${({ $bgColor }) => colors[$bgColor]};
   border-radius: 10px;
   float: left;
   transition: box-shadow 0.3s;
@@ -40,8 +40,8 @@ export const CardBg = styled.div<ICardContainerProps>`
     transform: scale(1.1);
     box-shadow: 0 0 11px black;
   }
-  color: ${({ bgcolor }) =>
-    fontColors[bgcolor] ? fontColors[bgcolor] : fontColors.default};
+  color: ${({ $bgColor }) =>
+    fontColors[$bgColor] ? fontColors[$bgColor] : fontColors.default};
 
   @media (min-width: 992px) {
     h2 {

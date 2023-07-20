@@ -13,12 +13,12 @@ interface IPokemonCardProps {
 const PokemonCard: React.FC<IPokemonCardProps> = ({ pokemon }) => {
   return (
     <CardBg
-      bgcolor={pokemon.color}
+      $bgColor={pokemon.color}
       className="d-flex  flex-column position-relative px-4 py-3 w-100"
     >
       <div className="d-flex">
         <h2 className="mb-3 d-flex flex-grow-1">{pokemon.name}</h2>
-        <IdBg bgcolor={pokemon.color}>
+        <IdBg $bgColor={pokemon.color}>
           <h2>#{String(pokemon.id).padStart(3, '0')}</h2>
         </IdBg>
       </div>

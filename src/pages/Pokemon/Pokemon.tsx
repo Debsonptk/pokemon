@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { usePokemon } from 'context/PokemonContext'
 
-import Footer from 'components/Footer/Footer'
+import Menu from 'components/Menu/Menu'
 
 import useTitle from 'hooks/useTitle'
 
@@ -28,6 +28,7 @@ const Pokemon: React.FC = () => {
 
   return (
     <>
+      <Menu />
       <Container>
         <Link to="/"> Back </Link>
         <h1>{name}</h1>
@@ -45,7 +46,6 @@ const Pokemon: React.FC = () => {
           </>
         )}
       </Container>
-      <Footer />
     </>
   )
 }

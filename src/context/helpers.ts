@@ -32,7 +32,7 @@ export const normalizePokemonsQueryResults = (
         : 100,
       f: item.specy.has_gender_differences
         ? calcFemaleGenderRatePercent(item.specy.gender_rate ?? 10)
-        : 100,
+        : 0,
     },
     image:
       `${JSON.parse(item?.images[0]?.sprites)?.other?.['official-artwork']
