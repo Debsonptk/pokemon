@@ -15,6 +15,10 @@ export const calcFemaleGenderRatePercent = (value: number): number => {
   return result
 }
 
+export const calcFeaturesTotal = (
+  arr: { name: string; value: number }[],
+): number => arr.reduce((acc, cur) => acc + cur.value, 0)
+
 export const normalizePokemonsQueryResults = (
   results: PokemonsQueryResultsArrayType[],
 ): PokemonType[] =>
