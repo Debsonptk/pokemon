@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap'
 import Lottie from 'react-lottie'
 import { Link, useParams } from 'react-router-dom'
 
-import animationData from 'assets/animation/loading_pikachu.json'
+import animationData from 'assets/animation/animation_pokemon.json'
 
 import { usePokemon } from 'context/PokemonContext'
 

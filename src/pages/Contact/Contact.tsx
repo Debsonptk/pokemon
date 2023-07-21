@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="email@email.con"
+                placeholder="exemple@email.com"
                 aria-label="email"
                 aria-describedby="basic-addon1"
               />

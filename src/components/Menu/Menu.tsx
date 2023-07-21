@@ -4,6 +4,8 @@ import { Container } from 'react-bootstrap'
 
 import logo from 'assets/pokemon_logo.jpeg'
 
+import MenuMobile from 'components/MenuMobile/MenuMobile'
+
 import { BorderShadow, SizeImage, StyledLink } from './styles'
 
 const Menu: React.FC = () => (
@@ -12,18 +14,23 @@ const Menu: React.FC = () => (
       <div>
         <SizeImage src={logo} alt="perfil" className="img-fluid" />
       </div>
-      <div>
+      <MenuMobile />
+      <div className="d-none d-lg-block">
         <StyledLink to="/" className="text-black text-decoration-none">
           Home
         </StyledLink>
       </div>
-      <StyledLink to="/pokemons" className="text-black text-decoration-none">
-        Pokemons
-      </StyledLink>
-      <StyledLink to="/contact" className="text-black text-decoration-none">
-        Contact
-      </StyledLink>
-      <div />
+      <div className="d-none d-lg-block">
+        <StyledLink to="/pokemons" className="text-black text-decoration-none">
+          Pokemons
+        </StyledLink>
+      </div>
+      <div className="d-none d-lg-block">
+        <StyledLink to="/contact" className="text-black text-decoration-none">
+          Contact
+        </StyledLink>
+      </div>
+      <div className="d-none d-lg-block" />
     </Container>
   </BorderShadow>
 )
