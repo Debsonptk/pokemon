@@ -39,7 +39,7 @@ const Home: React.FC = () => {
           />
         )}
         {!loading && (
-          <Row>
+          <Row className="row-cols-1 row-cols-sm-1 row-cols-md-2">
             <Col>
               <SizeText className="pt-5 pb-3">
                 Which Pokémon would you choose?

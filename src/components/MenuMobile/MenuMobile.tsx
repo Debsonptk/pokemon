@@ -43,7 +43,6 @@ const MenuMobile: React.FC<IMenuMobileProps> = () => {
             />
           </div>
           <div className="d-flex flex-column w-100">
-            <h4 className="text-center pb-5">Pokémon</h4>
             <h5 className="pb-4 border-bottom px-2">MENU</h5>
             <Link
               to="/"

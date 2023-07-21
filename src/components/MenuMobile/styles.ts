@@ -22,7 +22,7 @@ export const MenuMb = styled.div<IMenuProps>`
   left: ${(props) => (props.$isMenuOpened ? 0 : -75)}%;
   padding: 0px;
   width: 75%;
-  transition: all 0.2s ease-out;
+  transition: all 0.5s ease-out;
   z-index: 10;
   > svg {
     position: absolute;
