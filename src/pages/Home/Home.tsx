@@ -48,7 +48,10 @@ const Home: React.FC = () => {
                 You can know the type of Pokémon, their strengths, weaknesses
                 and abilities.
               </p>
-              <StyleButton type="button" className="btn text-white btn-lg">
+              <StyleButton
+                type="button"
+                className="btn text-white btn-lg btn-success"
+              >
                 See the Pokémon
               </StyleButton>
             </Col>
