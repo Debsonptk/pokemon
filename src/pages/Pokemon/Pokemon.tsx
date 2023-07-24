@@ -1,7 +1,8 @@
 import { memo, useEffect } from 'react'
 
 import { Col, Container, ProgressBar, Row } from 'react-bootstrap'
-import { FaMars, FaVenus } from 'react-icons/fa'
+import { FaMars, FaVenus, FaWeight } from 'react-icons/fa'
+import { LiaRulerVerticalSolid } from 'react-icons/lia'
 import { MdArrowBackIosNew } from 'react-icons/md'
 import Lottie from 'react-lottie'
 import { Link, useParams } from 'react-router-dom'
@@ -109,16 +110,22 @@ const Pokemon: React.FC = () => {
                   </p>
                   <Row className="pt-4 pb-3">
                     <Col className="text-center border-end">
-                      <h6>Weight:</h6>
-                      <p>{pokemon.weight} Kg</p>
+                      <h5>
+                        <FaWeight className="px-1" size="30px" />
+                        {pokemon.weight} Kg
+                      </h5>
+                      <p>Weight</p>
                     </Col>
                     <Col className="text-center border-end">
-                      <h6>Height:</h6>
-                      <p>{pokemon.height} m</p>
+                      <h5>
+                        <LiaRulerVerticalSolid size="25px" />
+                        {pokemon.height} m
+                      </h5>
+                      <p>Height</p>
                     </Col>
                     <Col className="text-center">
-                      <h6>Move:</h6>
-                      <p>{unslugify(pokemon.move)}</p>
+                      <h5>{unslugify(pokemon.move)}</h5>
+                      <p>Move</p>
                     </Col>
                   </Row>
                   <h2 className="px-4">Feature:</h2>
@@ -127,7 +134,7 @@ const Pokemon: React.FC = () => {
                       {unslugify(pokemon.stats[0].name)}
                     </span>
                     <span className="col col-1">{pokemon?.stats[0].value}</span>
-                    <div>
+                    <div className=" col col-6 col-md-9">
                       <ProgressBar
                         className="progress-bar-striped"
                         role="progressbar"
@@ -145,7 +152,7 @@ const Pokemon: React.FC = () => {
                       {unslugify(pokemon.stats[1].name)}
                     </span>
                     <span className="col col-1">{pokemon?.stats[1].value}</span>
-                    <div>
+                    <div className=" col col-6 col-md-9">
                       <ProgressBar
                         className="progress-bar-striped"
                         role="progressbar"
@@ -163,7 +170,7 @@ const Pokemon: React.FC = () => {
                       {unslugify(pokemon.stats[2].name)}
                     </span>
                     <span className="col col-1">{pokemon?.stats[2].value}</span>
-                    <div>
+                    <div className=" col col-6 col-md-9">
                       <ProgressBar
                         className="progress-bar-striped"
                         role="progressbar"
@@ -181,7 +188,7 @@ const Pokemon: React.FC = () => {
                       {unslugify(pokemon.stats[3].name)}
                     </span>
                     <span className="col col-1">{pokemon?.stats[3].value}</span>
-                    <div>
+                    <div className=" col col-6 col-md-9">
                       <ProgressBar
                         className="progress-bar-striped"
                         role="progressbar"
@@ -199,7 +206,7 @@ const Pokemon: React.FC = () => {
                       {unslugify(pokemon.stats[4].name)}
                     </span>
                     <span className="col col-1">{pokemon?.stats[4].value}</span>
-                    <div>
+                    <div className=" col col-6 col-md-9">
                       <ProgressBar
                         className="progress-bar-striped"
                         role="progressbar"
@@ -217,7 +224,7 @@ const Pokemon: React.FC = () => {
                       {unslugify(pokemon.stats[5].name)}
                     </span>
                     <span className="col col-1">{pokemon?.stats[5].value}</span>
-                    <div>
+                    <div className=" col col-6 col-md-9">
                       <ProgressBar
                         className="progress-bar-striped"
                         role="progressbar"
@@ -235,7 +242,7 @@ const Pokemon: React.FC = () => {
                     <span className="col col-1">
                       {calcFeaturesTotal(pokemon.stats)}
                     </span>
-                    <div>
+                    <div className=" col col-6 col-md-9">
                       <ProgressBar
                         role="progressbar"
                         variant={
