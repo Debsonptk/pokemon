@@ -12,7 +12,7 @@ import Menu from 'components/Menu/Menu'
 
 import useTitle from 'hooks/useTitle'
 
-import { SizeText, StyleButton } from './styles'
+import { AfterText, SizeText, StyleButton } from './styles'
 
 const Home: React.FC = () => {
   const setTitle = useTitle()
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
           <Row className="row-cols-1 row-cols-sm-1 row-cols-md-2">
             <Col>
               <SizeText className="pt-5 pb-3">
-                Which Pokémon would you choose?
+                Which Pokémon would you <AfterText>choose</AfterText>?
               </SizeText>
               <p className="pb-3">
                 You can know the type of Pokémon, their strengths, weaknesses

@@ -18,7 +18,8 @@ import { StyledH1 } from './styles'
 
 const Pokemons: React.FC = () => {
   const setTitle = useTitle()
-  const { loading, fetchPokemons, pokemons, fetchNextPage } = usePokemon()
+  const { loading, fetchPokemons, pokemons, fetchNextPage, hasMorePages } =
+    usePokemon()
 
   useEffect(() => {
     fetchPokemons()
@@ -52,7 +53,7 @@ const Pokemons: React.FC = () => {
           <InfiniteScroll
             dataLength={pokemons.length}
             next={fetchNextPage}
-            hasMore
+            hasMore={hasMorePages}
             loader={
               <Lottie
                 options={{
@@ -65,7 +66,7 @@ const Pokemons: React.FC = () => {
               />
             }
           >
-            <Row className="row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+            <Row className="row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 pb-4">
               {pokemons.map((pokemon) => (
                 <Col key={pokemon.id} className="d-flex">
                   <PokemonCard pokemon={pokemon} />

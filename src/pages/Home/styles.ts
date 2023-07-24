@@ -12,3 +12,17 @@ export const SizeText = styled.h1`
   font-weight: 800;
   color: rgb(40, 40, 40);
 `
+export const AfterText = styled.span`
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #f4d338;
+    z-index: -1;
+  }
+`
