@@ -6,7 +6,7 @@ import { PokemonType } from 'Types/PokemonType'
 
 import { unslugify } from 'helpers'
 
-import { CardBg, IdBg, TypesBg } from './styles'
+import { CardBg, IdBgContainer, TypesBgContainer } from './styles'
 
 interface IPokemonCardProps {
   pokemon: PokemonType
@@ -16,20 +16,20 @@ const PokemonCard: React.FC<IPokemonCardProps> = ({ pokemon }) => {
   return (
     <CardBg
       $bgColor={pokemon.color}
-      className="d-flex  flex-column position-relative px-4 py-3 w-100"
+      className="d-flex  flex-column position-relative px-2 py-3 w-100"
     >
       <div className="d-flex">
         <h2 className="mb-3 d-flex flex-grow-1">{unslugify(pokemon.name)}</h2>
-        <IdBg $bgColor={pokemon.color}>
+        <IdBgContainer $bgColor={pokemon.color}>
           <h2>#{String(pokemon.id).padStart(3, '0')}</h2>
-        </IdBg>
+        </IdBgContainer>
       </div>
       <Row className="flex-row ">
         <Col className="col-md-6 d-flex flex-column align-items-start">
           {Array.isArray(pokemon.types) &&
             pokemon.types.length > 0 &&
             pokemon.types.map((_t) => (
-              <TypesBg
+              <TypesBgContainer
                 key={_t}
                 className="my-2 justify-content-center align-items-center"
               >
@@ -39,7 +39,7 @@ const PokemonCard: React.FC<IPokemonCardProps> = ({ pokemon }) => {
                 >
                   {unslugify(_t)}
                 </span>
-              </TypesBg>
+              </TypesBgContainer>
             ))}
         </Col>
         <Col className="d-flex col-md-6 align-items-center justify-content-center">

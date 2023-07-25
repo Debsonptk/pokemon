@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-export const BgContainer = styled.div`
-  color: white;
-`
-
 type colorsType = {
   [index: string]: string
 }
@@ -39,7 +35,7 @@ export const PokemonBgColor = styled.div<ICardContainerProps>`
   flex-direction: column;
   min-height: 100vh;
 `
-export const PokemonBgWhite = styled.div`
+export const PokemonBgStats = styled.div`
   border-radius: 20px;
   background-color: white;
   color: black;
