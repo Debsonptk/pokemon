@@ -20,10 +20,34 @@ import useTitle from 'hooks/useTitle'
 
 import {
   PokemonBgColor,
-  PokemonBgWhite,
+  PokemonBgStats,
   SizeImage,
   TypesContainer,
 } from './styles'
+
+interface IStatRowProps {
+  name: string
+  value: number
+}
+
+const StatRow: React.FC<IStatRowProps> = ({ name, value }) => (
+  <Row className="px-4 pb-2">
+    <span className="col col-5 col-md-2">{unslugify(name)}</span>
+    <span className="col col-1">{value}</span>
+    <Col className="col-md-9">
+      <ProgressBar
+        className="progress-bar-striped"
+        role="progressbar"
+        variant={
+          value >= 50
+            ? 'success progress-bar-striped'
+            : 'danger progress-bar-striped'
+        }
+        now={value}
+      />
+    </Col>
+  </Row>
+)
 
 const Pokemon: React.FC = () => {
   const { name } = useParams()
@@ -74,18 +98,13 @@ const Pokemon: React.FC = () => {
               </div>
               {Array.isArray(pokemon.types) &&
                 pokemon.types.length > 0 &&
-                pokemon.types.map((_t) => (
+                pokemon.types.map((type) => (
                   <div>
                     <TypesContainer
-                      key={_t}
+                      key={type}
                       className="my-2 justify-content-center align-items-center"
                     >
-                      <span
-                        className=" px-3 py-1 "
-                        style={{ verticalAlign: 'midle' }}
-                      >
-                        {unslugify(_t)}
-                      </span>
+                      <span className=" px-3 py-1 ">{unslugify(type)}</span>
                     </TypesContainer>
                   </div>
                 ))}
@@ -96,23 +115,18 @@ const Pokemon: React.FC = () => {
                   className="img-fluid"
                 />
               </div>
-              <PokemonBgWhite>
+              <PokemonBgStats>
                 <Container>
                   <div className="px-4 pt-4">
                     <h2>Description:</h2>
                     <p>{pokemon.description}</p>
                   </div>
-                  <p className="px-4">
-                    Gender: <FaMars style={{ color: '#6C79DB' }} />{' '}
-                    {pokemon?.gender?.m}%{' '}
-                    <FaVenus style={{ color: '#F0729F' }} />
-                    {pokemon?.gender?.f}%
-                  </p>
+
                   <Row className="pt-4 pb-3">
                     <Col className="text-center border-end">
                       <h5>
                         <FaWeight className="px-1" size="30px" />
-                        {pokemon.weight} Kg
+                        {pokemon.weight} kg
                       </h5>
                       <p>Weight</p>
                     </Col>
@@ -128,121 +142,26 @@ const Pokemon: React.FC = () => {
                       <p>Move</p>
                     </Col>
                   </Row>
-                  <h2 className="px-4">Feature:</h2>
-                  <Row className="px-4 pb-2">
-                    <span className="col col-5 col-md-2">
-                      {unslugify(pokemon.stats[0].name)}
-                    </span>
-                    <span className="col col-1">{pokemon?.stats[0].value}</span>
-                    <div className=" col col-6 col-md-9">
-                      <ProgressBar
-                        className="progress-bar-striped"
-                        role="progressbar"
-                        variant={
-                          pokemon.stats[0].value >= 50
-                            ? 'success progress-bar-striped'
-                            : 'danger progress-bar-striped'
-                        }
-                        now={pokemon.stats[0].value}
-                      />
-                    </div>
-                  </Row>
-                  <Row className="px-4 pb-2">
-                    <span className="col col-5 col-md-2">
-                      {unslugify(pokemon.stats[1].name)}
-                    </span>
-                    <span className="col col-1">{pokemon?.stats[1].value}</span>
-                    <div className=" col col-6 col-md-9">
-                      <ProgressBar
-                        className="progress-bar-striped"
-                        role="progressbar"
-                        variant={
-                          pokemon.stats[1].value >= 50
-                            ? 'success progress-bar-striped'
-                            : 'danger progress-bar-striped'
-                        }
-                        now={pokemon.stats[1].value}
-                      />
-                    </div>
-                  </Row>
-                  <Row className="px-4 pb-2">
-                    <span className="col col-5 col-md-2">
-                      {unslugify(pokemon.stats[2].name)}
-                    </span>
-                    <span className="col col-1">{pokemon?.stats[2].value}</span>
-                    <div className=" col col-6 col-md-9">
-                      <ProgressBar
-                        className="progress-bar-striped"
-                        role="progressbar"
-                        variant={
-                          pokemon.stats[2].value >= 50
-                            ? 'success progress-bar-striped'
-                            : 'danger progress-bar-striped'
-                        }
-                        now={pokemon.stats[2].value}
-                      />
-                    </div>
-                  </Row>
-                  <Row className="px-4 pb-2">
-                    <span className="col col-5 col-md-2">
-                      {unslugify(pokemon.stats[3].name)}
-                    </span>
-                    <span className="col col-1">{pokemon?.stats[3].value}</span>
-                    <div className=" col col-6 col-md-9">
-                      <ProgressBar
-                        className="progress-bar-striped"
-                        role="progressbar"
-                        variant={
-                          pokemon.stats[3].value >= 50
-                            ? 'success progress-bar-striped'
-                            : 'danger progress-bar-striped'
-                        }
-                        now={pokemon.stats[3].value}
-                      />
-                    </div>
-                  </Row>
-                  <Row className="px-4 pb-2">
-                    <span className="col col-5 col-md-2">
-                      {unslugify(pokemon.stats[4].name)}
-                    </span>
-                    <span className="col col-1">{pokemon?.stats[4].value}</span>
-                    <div className=" col col-6 col-md-9">
-                      <ProgressBar
-                        className="progress-bar-striped"
-                        role="progressbar"
-                        variant={
-                          pokemon.stats[4].value >= 50
-                            ? 'success progress-bar-striped'
-                            : 'danger progress-bar-striped'
-                        }
-                        now={pokemon.stats[4].value}
-                      />
-                    </div>
-                  </Row>
-                  <Row className="px-4 pb-4">
-                    <span className="col col-5 col-md-2">
-                      {unslugify(pokemon.stats[5].name)}
-                    </span>
-                    <span className="col col-1">{pokemon?.stats[5].value}</span>
-                    <div className=" col col-6 col-md-9">
-                      <ProgressBar
-                        className="progress-bar-striped"
-                        role="progressbar"
-                        variant={
-                          pokemon.stats[5].value >= 50
-                            ? 'success progress-bar-striped'
-                            : 'danger progress-bar-striped'
-                        }
-                        now={pokemon.stats[5].value}
-                      />
-                    </div>
-                  </Row>
-                  <div className="d-flex row px-4 pb-5">
+                  <h2 className="px-4 pb-2">Feature:</h2>
+                  <p className="px-4">
+                    Gender: <FaMars color="#001969" />
+                    {pokemon?.gender?.m}%
+                    <FaVenus color="#f62466" />
+                    {pokemon?.gender?.f}%
+                  </p>
+                  {pokemon.stats.map((stat) => (
+                    <StatRow
+                      key={stat.name}
+                      name={stat.name}
+                      value={stat.value}
+                    />
+                  ))}
+                  <div className="d-flex row px-4 pb-5 pt-2">
                     <h6 className="col col-5 col-md-2">Total:</h6>
-                    <span className="col col-1">
+                    <span className="col col-1 px-1">
                       {calcFeaturesTotal(pokemon.stats)}
                     </span>
-                    <div className=" col col-6 col-md-9">
+                    <Col className="col-md-9">
                       <ProgressBar
                         role="progressbar"
                         variant={
@@ -252,10 +171,10 @@ const Pokemon: React.FC = () => {
                         }
                         now={calcFeaturesTotal(pokemon.stats) / 6}
                       />
-                    </div>
+                    </Col>
                   </div>
                 </Container>
-              </PokemonBgWhite>
+              </PokemonBgStats>
             </Container>
           </PokemonBgColor>
         )}

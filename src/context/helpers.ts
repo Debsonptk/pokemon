@@ -9,7 +9,7 @@ export const calcMaleGenderRatePercent = (value: number): number => {
   return result
 }
 export const calcFemaleGenderRatePercent = (value: number): number => {
-  let result = 100 - (value / 8) * 100
+  let result = (value / 8) * 100
   if (result > 100) result = 100
   if (result < 0) result = 0
   return result
@@ -31,12 +31,8 @@ export const normalizePokemonsQueryResults = (
     color: item.specy.color.name,
     types: item.types.data.map((t) => t.type.name),
     gender: {
-      m: item.specy.has_gender_differences
-        ? calcMaleGenderRatePercent(item.specy.gender_rate ?? 10)
-        : 100,
-      f: item.specy.has_gender_differences
-        ? calcFemaleGenderRatePercent(item.specy.gender_rate ?? 10)
-        : 0,
+      m: calcMaleGenderRatePercent(item.specy.gender_rate ?? 10),
+      f: calcFemaleGenderRatePercent(item.specy.gender_rate ?? 10),
     },
     image:
       `${JSON.parse(item?.images[0]?.sprites)?.other?.['official-artwork']

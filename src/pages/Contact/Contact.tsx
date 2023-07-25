@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import { Container } from 'react-bootstrap'
 
@@ -8,6 +8,9 @@ import useTitle from 'hooks/useTitle'
 
 const Contact: React.FC = () => {
   const setTitle = useTitle()
+  const [email, setEmail] = useState('')
+  const [subject, setSubject] = useState('')
+  const [body, setBody] = useState('')
 
   useEffect(() => {
     setTitle('Contact')
@@ -20,7 +23,7 @@ const Contact: React.FC = () => {
         <h1 className="pt-5 pb-4">Contact</h1>
         <form>
           <div className="row pb-4">
-            <div className="col col-md-6">
+            <div className="col col-md-6 col-12">
               <div className="pb-2">
                 <span>Name</span>
               </div>
@@ -33,8 +36,8 @@ const Contact: React.FC = () => {
                 aria-describedby="basic-addon1"
               />
             </div>
-            <div className="col col-md-6">
-              <div className="pb-2">
+            <div className="col col-md-6 col-12">
+              <div className="pb-2 pt-2">
                 <span>Email</span>
               </div>
               <input
@@ -43,6 +46,7 @@ const Contact: React.FC = () => {
                 placeholder="exemple@email.com"
                 aria-label="email"
                 aria-describedby="basic-addon1"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
@@ -55,22 +59,30 @@ const Contact: React.FC = () => {
               className="form-control"
               placeholder="Subject"
               aria-describedby="basic-addon1"
+              onChange={(e) => setSubject(e.target.value)}
             />
           </div>
           <div className="pb-2">
             <span>Message</span>
           </div>
-          <div className="form-floating pb-4">
+          <div className="pb-4">
             <textarea
-              className="form-control p-5"
+              onChange={(e) => setBody(e.target.value)}
+              className="form-control "
               placeholder="Message"
               id="coment"
             />
           </div>
         </form>
-        <button type="button" className="btn btn-primary btn-lg">
+        <a
+          role="button"
+          href={`mailto:${email}?subject=${subject}&body=${body}`}
+          className={`btn btn-primary btn-lg ${email ? '' : 'disabled'}`}
+          aria-disabled={!email}
+          onClick={(e) => (email ? null : e.preventDefault())}
+        >
           Submit
-        </button>
+        </a>
       </Container>
     </>
   )
