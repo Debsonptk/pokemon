@@ -28,17 +28,12 @@ const PokemonCard: React.FC<IPokemonCardProps> = ({ pokemon }) => {
         <Col className="col-md-6 d-flex flex-column align-items-start">
           {Array.isArray(pokemon.types) &&
             pokemon.types.length > 0 &&
-            pokemon.types.map((_t) => (
+            pokemon.types.map((type) => (
               <TypesBgContainer
-                key={_t}
+                key={type}
                 className="my-2 justify-content-center align-items-center"
               >
-                <span
-                  className=" px-3 py-1 "
-                  style={{ verticalAlign: 'midle' }}
-                >
-                  {unslugify(_t)}
-                </span>
+                <span className=" px-3 py-1 ">{unslugify(type)}</span>
               </TypesBgContainer>
             ))}
         </Col>
