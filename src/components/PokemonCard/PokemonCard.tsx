@@ -33,12 +33,7 @@ const PokemonCard: React.FC<IPokemonCardProps> = ({ pokemon }) => {
                 key={type}
                 className="my-2 justify-content-center align-items-center"
               >
-                <span
-                  className=" px-3 py-1 "
-                  style={{ verticalAlign: 'midle' }}
-                >
-                  {unslugify(type)}
-                </span>
+                <span className=" px-3 py-1 ">{unslugify(type)}</span>
               </TypesBgContainer>
             ))}
         </Col>

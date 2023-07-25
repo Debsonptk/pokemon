@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
         <form>
           <div className="row pb-4">
             <div className="col col-md-6 col-12">
-              <div className="pb-2">
+              <div className="pb-2 pt-2">
                 <span>Name</span>
               </div>
               <input
