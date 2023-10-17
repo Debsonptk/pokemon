@@ -40,7 +40,7 @@ export const PokemonBgStats = styled.div`
   background-color: white;
   color: black;
   font-size: 0.8rem;
-  transform: translateY(-60px);
+  transform: translateY(-40px);
 `
 
 export const TypesContainer = styled.div`
