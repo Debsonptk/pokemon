@@ -40,6 +40,7 @@ export const PokemonBgStats = styled.div`
   background-color: white;
   color: black;
   font-size: 0.8rem;
+  transform: translateY(-60px);
 `
 
 export const TypesContainer = styled.div`
@@ -58,4 +59,5 @@ export const Description = styled.h2<ICardContainerProps>`
 `
 export const SizeImage = styled.img`
   max-width: 240px;
+  z-index: 1;
 `
